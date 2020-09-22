@@ -33,6 +33,9 @@ module Decidim
     validates :password_confirmation, presence: true
     validates :tos_agreement, allow_nil: false, acceptance: true
 
+    validates :age_slice, inclusion: { in: AGE_SLICE }, if: ->(form){ form.age_slice.present? }
+    validate :group_membership_inclusion, if: ->(form){ form.group_membership.present? }
+    validate :questions_validation
     validate :email_unique_in_organization
     validate :nickname_unique_in_organization
     validate :no_pending_invitations_exist
@@ -44,6 +47,28 @@ module Decidim
     end
 
     private
+
+    def questions_validation
+      check_question_inclusion(:question_racialized, question_racialized) if defined? question_racialized
+      check_question_inclusion(:question_gender, question_gender) if defined? question_gender
+      check_question_inclusion(:question_sexual_orientation, question_sexual_orientation) if defined? question_sexual_orientation
+      check_question_inclusion(:question_disability, question_disability) if defined? question_disability
+      check_question_inclusion(:question_social_context, question_social_context) if defined? question_social_context
+    end
+
+    def check_question_inclusion(question_sym, answer, inclusion_ary=GENERIC_ANSWERS)
+      return unless answer.present?
+
+      errors.add question_sym, :inclusion unless inclusion_ary.include? answer.to_sym
+    end
+
+    def group_membership_inclusion
+      return if group_membership.blank?
+
+      group_membership.reject(&:empty?).map(&:to_sym).each do |elem|
+        errors.add :group_membership, :inclusion unless GROUP_MEMBERSHIP.include? elem.to_sym
+      end
+    end
 
     def email_unique_in_organization
       errors.add :email, :taken if User.no_active_invitation.find_by(email: email, organization: current_organization).present?
