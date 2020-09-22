@@ -74,7 +74,7 @@
                   <%= f.label :group_membership, t("group_membership", scope: "decidim.devise.registrations.new.labels") %>
                   <%= f.collection_check_boxes(:group_membership,
                                                Decidim::RegistrationForm::GROUP_MEMBERSHIP,
-                                               ->(value) { value.to_s },
+                                               :to_s,
                                                ->(text) { t("#{text}", scope: "decidim.devise.registrations.new.group_membership") }) do |b| %>
                       <div>
                         <%= b.check_box.html_safe + b.label.html_safe %>
@@ -96,9 +96,9 @@
                 <div class="field">
                   <%= f.collection_select(
                           :question_racialized,
-                          Decidim::RegistrationForm::QUESTIONS_PROTOTYPE,
+                          Decidim::RegistrationForm::GENERIC_ANSWERS,
                           :to_s,
-                          ->(value) { value },
+                          ->(value) { t("#{value}", scope: "decidim.devise.registrations.new.generic_answers") },
                           { label: t("question_racialized", scope: "decidim.devise.registrations.new.labels"), help_text: t("question_racialized", scope: "decidim.devise.registrations.new.help_text") }
                       ) %>
                 </div>
@@ -107,9 +107,9 @@
                 <div class="field">
                   <%= f.collection_select(
                           :question_gender,
-                          Decidim::RegistrationForm::QUESTIONS_PROTOTYPE,
+                          Decidim::RegistrationForm::GENERIC_ANSWERS,
                           :to_s,
-                          ->(value) { value },
+                          ->(value) { t("#{value}", scope: "decidim.devise.registrations.new.generic_answers") },
                           { label: t("question_gender", scope: "decidim.devise.registrations.new.labels") }
                       ) %>
                 </div>
@@ -118,9 +118,9 @@
                 <div class="field">
                   <%= f.collection_select(
                           :question_sexual_orientation,
-                          Decidim::RegistrationForm::QUESTIONS_PROTOTYPE,
+                          Decidim::RegistrationForm::GENERIC_ANSWERS,
                           :to_s,
-                          ->(value) { value },
+                          ->(value) { t("#{value}", scope: "decidim.devise.registrations.new.generic_answers") },
                           { label: t("question_sexual_orientation", scope: "decidim.devise.registrations.new.labels") }
                       ) %>
                 </div>
@@ -129,9 +129,9 @@
                 <div class="field">
                   <%= f.collection_select(
                           :question_disability,
-                          Decidim::RegistrationForm::QUESTIONS_PROTOTYPE,
+                          Decidim::RegistrationForm::GENERIC_ANSWERS,
                           :to_s,
-                          ->(age) { age },
+                          ->(value) { t("#{value}", scope: "decidim.devise.registrations.new.generic_answers") },
                           { label: t("question_disability", scope: "decidim.devise.registrations.new.labels") }
                       ) %>
                 </div>
@@ -140,9 +140,9 @@
                 <div class="field">
                   <%= f.collection_select(
                           :question_social_context,
-                          Decidim::RegistrationForm::QUESTIONS_PROTOTYPE,
+                          Decidim::RegistrationForm::GENERIC_ANSWERS,
                           :to_s,
-                          ->(age) { age },
+                          ->(value) { t("#{value}", scope: "decidim.devise.registrations.new.generic_answers") },
                           { label: t("question_social_context", scope: "decidim.devise.registrations.new.labels") }
                       ) %>
                 </div>

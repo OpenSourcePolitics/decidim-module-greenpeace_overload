@@ -18,6 +18,10 @@ en:
             question_racialized: Do you consider yourself racialized ?
             question_sexual_orientation: Do you consider yourself to be in a minority with regard to your sexual orientation ?
             question_social_context: Are you from a working-class background?
+          generic_answers:
+            answer_yes: "Yes"
+            answer_no: "No"
+            not_answering: Does not wish to answer
           group_membership:
             employee: Employees
             local_group: Local group
