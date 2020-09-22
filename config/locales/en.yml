@@ -1,0 +1,6 @@
+---
+en:
+  decidim:
+    components:
+      greenpeace_overload:
+        name: GreenpeaceOverload
