@@ -22,6 +22,7 @@ fr:
             question_racialized: Te considères-tu racisé·e ?
             question_sexual_orientation: Te considères-tu minorisé·e au regard de ton orientation sexuelle ?
             question_social_context: Es-tu issu·e d’un milieu populaire ?
+            select: Selectionner
           generic_answers:
             answer_yes: Oui
             answer_no: Non

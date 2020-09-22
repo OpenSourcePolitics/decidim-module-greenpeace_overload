@@ -65,7 +65,10 @@
                           Decidim::RegistrationForm::AGE_SLICE,
                           :to_s,
                           ->(age_slice) { age_slice },
-                          { label: t("age_slice", scope: "decidim.devise.registrations.new.labels") }
+                          {
+                              label: t("age_slice", scope: "decidim.devise.registrations.new.labels"),
+                              prompt: t("select", scope: "decidim.devise.registrations.new.labels")
+                          }
                       ) %>
                 </div>
               </div>
@@ -99,7 +102,11 @@
                           Decidim::RegistrationForm::GENERIC_ANSWERS,
                           :to_s,
                           ->(value) { t("#{value}", scope: "decidim.devise.registrations.new.generic_answers") },
-                          { label: t("question_racialized", scope: "decidim.devise.registrations.new.labels"), help_text: t("question_racialized", scope: "decidim.devise.registrations.new.help_text") }
+                          {
+                              label: t("question_racialized", scope: "decidim.devise.registrations.new.labels"),
+                              prompt: t("select", scope: "decidim.devise.registrations.new.labels"),
+                              help_text: t("question_racialized", scope: "decidim.devise.registrations.new.help_text")
+                          }
                       ) %>
                 </div>
               </div>
@@ -110,7 +117,10 @@
                           Decidim::RegistrationForm::GENERIC_ANSWERS,
                           :to_s,
                           ->(value) { t("#{value}", scope: "decidim.devise.registrations.new.generic_answers") },
-                          { label: t("question_gender", scope: "decidim.devise.registrations.new.labels") }
+                          {
+                              label: t("question_gender", scope: "decidim.devise.registrations.new.labels"),
+                              prompt: t("select", scope: "decidim.devise.registrations.new.labels"),
+                          }
                       ) %>
                 </div>
               </div>
@@ -121,7 +131,10 @@
                           Decidim::RegistrationForm::GENERIC_ANSWERS,
                           :to_s,
                           ->(value) { t("#{value}", scope: "decidim.devise.registrations.new.generic_answers") },
-                          { label: t("question_sexual_orientation", scope: "decidim.devise.registrations.new.labels") }
+                          {
+                              label: t("question_sexual_orientation", scope: "decidim.devise.registrations.new.labels"),
+                              prompt: t("select", scope: "decidim.devise.registrations.new.labels"),
+                          }
                       ) %>
                 </div>
               </div>
@@ -132,7 +145,10 @@
                           Decidim::RegistrationForm::GENERIC_ANSWERS,
                           :to_s,
                           ->(value) { t("#{value}", scope: "decidim.devise.registrations.new.generic_answers") },
-                          { label: t("question_disability", scope: "decidim.devise.registrations.new.labels") }
+                          {
+                              label: t("question_disability", scope: "decidim.devise.registrations.new.labels"),
+                              prompt: t("select", scope: "decidim.devise.registrations.new.labels"),
+                          }
                       ) %>
                 </div>
               </div>
@@ -143,7 +159,10 @@
                           Decidim::RegistrationForm::GENERIC_ANSWERS,
                           :to_s,
                           ->(value) { t("#{value}", scope: "decidim.devise.registrations.new.generic_answers") },
-                          { label: t("question_social_context", scope: "decidim.devise.registrations.new.labels") }
+                          {
+                              label: t("question_social_context", scope: "decidim.devise.registrations.new.labels"),
+                              prompt: t("select", scope: "decidim.devise.registrations.new.labels"),
+                          }
                       ) %>
                 </div>
               </div>

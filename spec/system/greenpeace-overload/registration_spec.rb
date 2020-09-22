@@ -32,22 +32,22 @@ describe "Registration", type: :system do
       end
 
       it "shows additionals fields" do
-
-        expect(page).to have_field("registration_user_age_slice")
-
-        checkboxes_presence %w(registration_user_group_membership_groupe_local
-                             registration_user_group_membership_salariées
-                             registration_user_group_membership_assemblée_statutaire__board
-                             registration_user_group_membership_bénévoles_admin
-                             registration_user_group_membership_recruteureuses_de_rue__dd
-                             registration_user_group_membership_recruteureuses_de_rue__dd
+        checkboxes_presence %w(registration_user_group_membership_local_group
+                             registration_user_group_membership_employee
+                             registration_user_group_membership_statutory_assembly
+                             registration_user_group_membership_volunteer_admin
+                             registration_user_group_membership_street_recruiter
+                             registration_user_group_membership_other
                             )
 
-        expect(page).to have_field("registration_user_question_racialized")
-        expect(page).to have_field("registration_user_question_gender")
-        expect(page).to have_field("registration_user_question_sexual_orientation")
-        expect(page).to have_field("registration_user_question_disability")
-        expect(page).to have_field("registration_user_question_social_context")
+        select_presence %w(
+                          registration_user_age_slice
+                          registration_user_question_racialized
+                          registration_user_question_gender
+                          registration_user_question_sexual_orientation
+                          registration_user_question_disability
+                          registration_user_question_social_context
+                        )
       end
     end
   end
@@ -56,5 +56,12 @@ end
 def checkboxes_presence(ids, checked=false)
   ids.each do |id|
     expect(page).to have_field(id, checked: checked)
+  end
+end
+
+def select_presence(ids, first_option_text="Select")
+  ids.each do |id|
+    expect(page).to have_field(id)
+    expect(find("##{id} > option:nth-child(1)").text).to eq(first_option_text)
   end
 end
