@@ -43,10 +43,10 @@ describe "Registration", type: :system do
                              registration_user_group_membership_recruteureuses_de_rue__dd
                             )
 
-        expect(page).to have_field("registration_user_question_1")
+        expect(page).to have_field("registration_user_question_racialized")
         expect(page).to have_field("registration_user_question_gender")
         expect(page).to have_field("registration_user_question_sexual_orientation")
-        expect(page).to have_field("registration_user_question_handicap")
+        expect(page).to have_field("registration_user_question_disability")
         expect(page).to have_field("registration_user_question_social_context")
       end
     end
