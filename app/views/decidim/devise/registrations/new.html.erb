@@ -74,8 +74,8 @@
                   <%= f.label :group_membership, t("group_membership", scope: "decidim.devise.registrations.new.labels") %>
                   <%= f.collection_check_boxes(:group_membership,
                                                Decidim::RegistrationForm::GROUP_MEMBERSHIP,
-                                               ->(value) { value },
-                                               ->(text) { text }) do |b| %>
+                                               ->(value) { value.to_s },
+                                               ->(text) { t("#{text}", scope: "decidim.devise.registrations.new.group_membership") }) do |b| %>
                       <div>
                         <%= b.check_box.html_safe + b.label.html_safe %>
                       </div>

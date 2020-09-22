@@ -22,6 +22,13 @@ fr:
             question_racialized: Te considères-tu racisé·e ?
             question_sexual_orientation: Te considères-tu minorisé·e au regard de ton orientation sexuelle ?
             question_social_context: Es-tu issu·e d’un milieu populaire ?
+          group_membership:
+            employee: Salarié·es
+            local_group: Groupe local
+            other: Autre
+            statutory_assembly: Assemblée Statutaire / Board
+            street_recruiter: Recruteur·euses de rue / DD
+            volunteer_admin: Bénévoles admin
     components:
       greenpeace_overload:
         name: GreenpeaceOverload

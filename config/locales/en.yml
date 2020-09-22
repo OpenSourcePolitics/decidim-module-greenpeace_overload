@@ -18,6 +18,13 @@ en:
             question_racialized: Do you consider yourself racialized ?
             question_sexual_orientation: Do you consider yourself to be in a minority with regard to your sexual orientation ?
             question_social_context: Are you from a working-class background?
+          group_membership:
+            employee: Employees
+            local_group: Local group
+            other: Other
+            statutory_assembly: Statutory Assembly / Board
+            street_recruiter: Street Recruiter / DD
+            volunteer_admin: Volunteers admin
     components:
       greenpeace_overload:
         name: GreenpeaceOverload
