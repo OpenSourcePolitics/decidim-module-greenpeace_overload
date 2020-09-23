@@ -49,6 +49,102 @@ describe "Registration", type: :system do
                           registration_user_question_social_context
                         )
       end
+
+      context "with optional informations" do
+        before do
+          fill_registration_form
+        end
+
+        context "with all optional informations" do
+          it "is valid" do
+            select '45-55', from: :registration_user_age_slice
+            check :registration_user_group_membership_local_group
+            check :registration_user_group_membership_employee
+            check :registration_user_group_membership_statutory_assembly
+            check :registration_user_group_membership_volunteer_admin
+            check :registration_user_group_membership_street_recruiter
+            check :registration_user_group_membership_other
+            select 'Yes', from: :registration_user_question_racialized
+            select 'Yes', from: :registration_user_question_gender
+            select 'Yes', from: :registration_user_question_sexual_orientation
+            select 'Yes', from: :registration_user_question_disability
+            select 'Yes', from: :registration_user_question_social_context
+            check :registration_user_newsletter
+            check :registration_user_tos_agreement
+
+            within "form.new_user" do
+              find("*[type=submit]").click
+            end
+
+            expect(page).to have_content("You have signed up successfully.")
+          end
+        end
+
+        context "with missing optional informations" do
+          it "is valid" do
+            check :registration_user_group_membership_other
+            select 'Yes', from: :registration_user_question_disability
+            select 'Yes', from: :registration_user_question_social_context
+            check :registration_user_newsletter
+            check :registration_user_tos_agreement
+
+            within "form.new_user" do
+              find("*[type=submit]").click
+            end
+
+            expect(page).to have_content("You have signed up successfully.")
+          end
+        end
+      end
+    end
+  end
+
+  context "when newsletter checkbox is unchecked" do
+    it "opens modal on submit" do
+      within "form.new_user" do
+        find("*[type=submit]").click
+      end
+      expect(page).to have_css("#sign-up-newsletter-modal", visible: :visible)
+      expect(page).to have_current_path decidim.new_user_registration_path
+    end
+
+    it "checks when clicking the checking button" do
+      within "form.new_user" do
+        find("*[type=submit]").click
+      end
+      click_button "Check and continue"
+      expect(page).to have_current_path decidim.new_user_registration_path
+      expect(page).to have_css("#sign-up-newsletter-modal", visible: :hidden)
+      expect(page).to have_field("registration_user_newsletter", checked: true)
+    end
+
+    it "submit after modal has been opened and selected an option" do
+      within "form.new_user" do
+        find("*[type=submit]").click
+      end
+      click_button "Keep uncheck"
+      expect(page).to have_css("#sign-up-newsletter-modal", visible: :all)
+      fill_registration_form
+      within "form.new_user" do
+        find("*[type=submit]").click
+      end
+      expect(page).to have_current_path decidim.user_registration_path
+      expect(page).to have_field("registration_user_newsletter", checked: false)
+    end
+  end
+
+  context "when newsletter checkbox is checked but submit fails" do
+    before do
+      fill_registration_form
+      page.check("registration_user_newsletter")
+    end
+
+    it "keeps the user newsletter checkbox true value" do
+      within "form.new_user" do
+        find("*[type=submit]").click
+      end
+      expect(page).to have_current_path decidim.user_registration_path
+      expect(page).to have_field("registration_user_newsletter", checked: true)
     end
   end
 end
