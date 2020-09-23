@@ -137,17 +137,27 @@ module Decidim
           end
         end
 
-        it "serializes the author and extended data" do
-          expect(serialized).to include(:author)
-          expect(serialized[:author]).to include(id: proposal&.creator_author&.id)
-          expect(serialized[:author][:extended_date]).to include(age_slice: proposal&.creator_author.extended_data[:age_slice],
-                                                                group_membership: proposal&.creator_author.extended_data[:group_membership],
-                                                                question_racialized: proposal&.creator_author.extended_data[:question_racialized],
-                                                                question_gender: proposal&.creator_author.extended_data[:question_gender],
-                                                                question_sexual_orientation: proposal&.creator_author.extended_data[:question_sexual_orientation],
-                                                                question_disability: proposal&.creator_author.extended_data[:question_disability],
-                                                                question_social_context: proposal&.creator_author.extended_data[:question_social_context]
-                                                         )
+        it "doest not serializes the author" do
+          expect(serialized).not_to include(:author)
+        end
+
+        context "when user is admin" do
+          subject do
+            described_class.new(proposal, true)
+          end
+
+          it "serializes the author nor extended data" do
+            expect(serialized).to include(:author)
+            expect(serialized[:author]).to include(id: proposal&.creator_author&.id)
+            expect(serialized[:author][:extended_data]).to include(age_slice: proposal&.creator_author[:extended_data][:age_slice],
+                                                                   group_membership: proposal&.creator_author[:extended_data][:group_membership],
+                                                                   question_racialized: proposal&.creator_author[:extended_data][:question_racialized],
+                                                                   question_gender: proposal&.creator_author[:extended_data][:question_gender],
+                                                                   question_sexual_orientation: proposal&.creator_author[:extended_data][:question_sexual_orientation],
+                                                                   question_disability: proposal&.creator_author[:extended_data][:question_disability],
+                                                                   question_social_context: proposal&.creator_author[:extended_data][:question_social_context]
+                                                           )
+          end
         end
       end
     end
