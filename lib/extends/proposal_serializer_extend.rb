@@ -63,18 +63,24 @@ module ProposalSerializerExtend
           {
               author: {
                   id: proposal.creator_author[:id] || "",
-                  age_slice: proposal.creator_author[:extended_data]["age_slice"] || "",
-                  group_membership: proposal.creator_author[:extended_data]["group_membership"] || "",
-                  question_racialized: proposal.creator_author[:extended_data]["question_racialized"] || "",
-                  question_gender: proposal.creator_author[:extended_data]["question_gender"] || "",
-                  question_sexual_orientation: proposal.creator_author[:extended_data]["question_sexual_orientation"] || "",
-                  question_disability: proposal.creator_author[:extended_data]["question_disability"] || "",
-                  question_social_context: proposal.creator_author[:extended_data]["question_social_context"] || ""
+                  age_slice: extended_data_key(proposal.creator_author, "age_slice"),
+                  group_membership: extended_data_key(proposal.creator_author, "group_membership"),
+                  question_racialized: extended_data_key(proposal.creator_author, "question_racialized"),
+                  question_gender: extended_data_key(proposal.creator_author, "question_gender"),
+                  question_sexual_orientation: extended_data_key(proposal.creator_author, "question_sexual_orientation"),
+                  question_disability: extended_data_key(proposal.creator_author, "question_disability"),
+                  question_social_context: extended_data_key(proposal.creator_author, "question_social_context")
               }
           }
         end
       end
 
+      def extended_data_key(user, key)
+        return "" if user.try(:extended_data).blank?
+        return "" if user[:extended_data].fetch(key, nil).blank?
+
+        user[:extended_data][key]
+      end
 end
 
 Decidim::Proposals::ProposalSerializer.send(:include, ProposalSerializerExtend)

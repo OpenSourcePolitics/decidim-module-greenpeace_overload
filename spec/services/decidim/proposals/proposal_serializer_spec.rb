@@ -162,7 +162,7 @@ module Decidim
             described_class.new(proposal, true)
           end
 
-          it "serializes the author nor extended data" do
+          it "serializes the author and extended data" do
             expect(serialized).to include(:author)
             expect(serialized[:author]).to include(id: proposal&.creator_author&.id)
             expect(serialized[:author]).to include(age_slice: proposal&.creator_author[:extended_data]["age_slice"],
@@ -173,6 +173,25 @@ module Decidim
                                                                    question_disability: proposal&.creator_author[:extended_data]["question_disability"],
                                                                    question_social_context: proposal&.creator_author[:extended_data]["question_social_context"]
                                                            )
+          end
+
+          context "when user does not have extended_data" do
+            before do
+              proposal.creator_author.update!(extended_data: "")
+            end
+
+            it "serializes the author and extended data" do
+              expect(serialized).to include(:author)
+              expect(serialized[:author]).to include(id: proposal&.creator_author&.id)
+              expect(serialized[:author]).to include(age_slice: "",
+                                                     group_membership: "",
+                                                     question_racialized: "",
+                                                     question_gender: "",
+                                                     question_sexual_orientation: "",
+                                                     question_disability: "",
+                                                     question_social_context: ""
+                                             )
+            end
           end
         end
       end
