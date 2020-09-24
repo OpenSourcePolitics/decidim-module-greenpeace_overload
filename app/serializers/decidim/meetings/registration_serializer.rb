@@ -41,15 +41,22 @@ module Decidim
       def admin_extra_fields
         {
             extended_data: {
-                age_slice: resource.user[:extended_data]["age_slice"] || "",
-                group_membership: resource.user[:extended_data]["group_membership"] || "",
-                question_racialized: resource.user[:extended_data]["question_racialized"] || "",
-                question_gender: resource.user[:extended_data]["question_gender"] || "",
-                question_sexual_orientation: resource.user[:extended_data]["question_sexual_orientation"] || "",
-                question_disability: resource.user[:extended_data]["question_disability"] || "",
-                question_social_context: resource.user[:extended_data]["question_social_context"] || ""
+                age_slice: extended_data_key(resource.user, "age_slice"),
+                group_membership: extended_data_key(resource.user, "group_membership"),
+                question_racialized: extended_data_key(resource.user, "question_racialized"),
+                question_gender: extended_data_key(resource.user, "question_gender"),
+                question_sexual_orientation: extended_data_key(resource.user, "question_sexual_orientation"),
+                question_disability: extended_data_key(resource.user, "question_disability"),
+                question_social_context: extended_data_key(resource.user, "question_social_context")
             }
         }
+      end
+
+      def extended_data_key(user, key)
+        return "" if user.try(:extended_data).blank?
+        return "" if user[:extended_data].fetch(key, nil).blank?
+
+        user[:extended_data][key]
       end
     end
   end

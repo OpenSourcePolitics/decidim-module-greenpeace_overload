@@ -37,6 +37,24 @@ module Decidim::Meetings
                                                        )
         end
       end
+
+      context "when user does not have extended_data" do
+        before do
+          registration.user.update!(extended_data: "")
+        end
+
+        it "serializes the author and extended data" do
+          expect(subject.serialize).to include(:extended_data)
+          expect(subject.serialize[:extended_data]).to include(age_slice: "",
+                                                 group_membership: "",
+                                                 question_racialized: "",
+                                                 question_gender: "",
+                                                 question_sexual_orientation: "",
+                                                 question_disability: "",
+                                                 question_social_context: ""
+                                         )
+        end
+      end
     end
 
   end
@@ -145,7 +163,6 @@ module Decidim::Meetings
         end
 
         it_behaves_like "extended_data for admin user"
-
       end
     end
   end
