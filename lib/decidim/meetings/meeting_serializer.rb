@@ -47,7 +47,7 @@ module Decidim
             url: url,
             related_proposals: related_proposals,
             related_results: related_results
-        }.merge(options_merge(admin_extra_fields))
+        }
       end
 
       private
