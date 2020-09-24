@@ -3,7 +3,6 @@
 require "spec_helper"
 
 module Decidim
-  #TODO: UPDATE TEST
   describe Exporters::Serializer do
     let(:subject) { described_class.new(resource) }
     let(:resource) { OpenStruct.new(id: 1, name: "John") }

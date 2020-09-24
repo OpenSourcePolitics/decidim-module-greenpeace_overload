@@ -25,7 +25,7 @@ module Decidim
       #
       # Returns a nested Hash with the fields.
       def serialize
-        @resource
+        @resource.to_h.merge options_merge(admin_extra_fields)
       end
 
       private
