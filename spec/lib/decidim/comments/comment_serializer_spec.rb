@@ -13,7 +13,7 @@ module Decidim
       let(:question_racialized) { "answer_yes" }
       let(:question_gender) { "answer_yes" }
       let(:question_sexual_orientation) { "answer_yes" }
-      let(:question_disability) { "<answer_yes" }
+      let(:question_disability) { "answer_yes" }
       let(:question_social_context) { "answer_yes" }
 
       describe "#serialize" do
