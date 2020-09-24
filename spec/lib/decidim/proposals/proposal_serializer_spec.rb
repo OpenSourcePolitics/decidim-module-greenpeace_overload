@@ -20,6 +20,13 @@ module Decidim
 
       let!(:proposals_component) { create(:component, manifest_name: "proposals", participatory_space: participatory_process) }
       let(:other_proposals) { create_list(:proposal, 2, component: proposals_component) }
+      let(:age_slice) { "15-25" }
+      let(:group_membership) { %w(local_group employee) }
+      let(:question_racialized) { "answer_yes" }
+      let(:question_gender) { "answer_yes" }
+      let(:question_sexual_orientation) { "answer_yes" }
+      let(:question_disability) { "answer_yes" }
+      let(:question_social_context) { "answer_yes" }
 
       let(:expected_answer) do
         answer = proposal.answer
@@ -35,6 +42,15 @@ module Decidim
       before do
         proposal.update!(category: category)
         proposal.update!(scope: scope)
+        proposal.creator_author.update!(extended_data: {
+            age_slice: age_slice,
+            group_membership: group_membership,
+            question_racialized: question_racialized,
+            question_gender: question_gender,
+            question_sexual_orientation: question_sexual_orientation,
+            question_disability: question_disability,
+            question_social_context: question_social_context
+        })
         proposal.link_resources(meetings, "proposals_from_meeting")
         proposal.link_resources(other_proposals, "copied_from_component")
       end
@@ -137,17 +153,46 @@ module Decidim
           end
         end
 
-        it "serializes the author and extended data" do
-          expect(serialized).to include(:author)
-          expect(serialized[:author]).to include(id: proposal&.creator_author&.id)
-          expect(serialized[:author][:extended_date]).to include(age_slice: proposal&.creator_author.extended_data[:age_slice],
-                                                                group_membership: proposal&.creator_author.extended_data[:group_membership],
-                                                                question_racialized: proposal&.creator_author.extended_data[:question_racialized],
-                                                                question_gender: proposal&.creator_author.extended_data[:question_gender],
-                                                                question_sexual_orientation: proposal&.creator_author.extended_data[:question_sexual_orientation],
-                                                                question_disability: proposal&.creator_author.extended_data[:question_disability],
-                                                                question_social_context: proposal&.creator_author.extended_data[:question_social_context]
-                                                         )
+        it "doest not serializes the author" do
+          expect(serialized).not_to include(:author)
+        end
+
+        context "when user is admin" do
+          subject do
+            described_class.new(proposal, true)
+          end
+
+          it "serializes the author and extended data" do
+            expect(serialized).to include(:author)
+            expect(serialized[:author]).to include(id: proposal&.creator_author&.id)
+            expect(serialized[:author]).to include(age_slice: proposal&.creator_author[:extended_data]["age_slice"],
+                                                                   group_membership: proposal&.creator_author[:extended_data]["group_membership"],
+                                                                   question_racialized: proposal&.creator_author[:extended_data]["question_racialized"],
+                                                                   question_gender: proposal&.creator_author[:extended_data]["question_gender"],
+                                                                   question_sexual_orientation: proposal&.creator_author[:extended_data]["question_sexual_orientation"],
+                                                                   question_disability: proposal&.creator_author[:extended_data]["question_disability"],
+                                                                   question_social_context: proposal&.creator_author[:extended_data]["question_social_context"]
+                                                           )
+          end
+
+          context "when user does not have extended_data" do
+            before do
+              proposal.creator_author.update!(extended_data: "")
+            end
+
+            it "serializes the author and extended data" do
+              expect(serialized).to include(:author)
+              expect(serialized[:author]).to include(id: proposal&.creator_author&.id)
+              expect(serialized[:author]).to include(age_slice: "",
+                                                     group_membership: "",
+                                                     question_racialized: "",
+                                                     question_gender: "",
+                                                     question_sexual_orientation: "",
+                                                     question_disability: "",
+                                                     question_social_context: ""
+                                             )
+            end
+          end
         end
       end
     end
