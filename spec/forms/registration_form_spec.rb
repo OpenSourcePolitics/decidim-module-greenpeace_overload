@@ -3,7 +3,7 @@
 require "spec_helper"
 
 module Decidim
-  shared_examples 'with missing attribute' do |attr, expectation|
+  shared_examples "with missing attribute" do |attr, expectation|
     context "when the #{attr} is not present" do
       let(attr.to_sym) { nil }
 
@@ -30,9 +30,9 @@ module Decidim
   describe RegistrationForm do
     subject do
       described_class.from_params(
-          attributes
+        attributes
       ).with_context(
-          context
+        context
       )
     end
 
@@ -53,25 +53,25 @@ module Decidim
 
     let(:attributes) do
       {
-          name: name,
-          nickname: nickname,
-          email: email,
-          password: password,
-          password_confirmation: password_confirmation,
-          tos_agreement: tos_agreement,
-          age_slice: age_slice,
-          group_membership: group_membership,
-          question_racialized: question_racialized,
-          question_gender: question_gender,
-          question_sexual_orientation: question_sexual_orientation,
-          question_disability: question_disability,
-          question_social_context: question_social_context
+        name: name,
+        nickname: nickname,
+        email: email,
+        password: password,
+        password_confirmation: password_confirmation,
+        tos_agreement: tos_agreement,
+        age_slice: age_slice,
+        group_membership: group_membership,
+        question_racialized: question_racialized,
+        question_gender: question_gender,
+        question_sexual_orientation: question_sexual_orientation,
+        question_disability: question_disability,
+        question_social_context: question_social_context
       }
     end
 
     let(:context) do
       {
-          current_organization: organization
+        current_organization: organization
       }
     end
 

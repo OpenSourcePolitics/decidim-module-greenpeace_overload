@@ -7,14 +7,14 @@ module Decidim
       # Serializes a registration
       def serialize
         {
-            id: resource.id,
-            code: resource.code,
-            user: {
-                name: resource.user.name,
-                email: resource.user.email,
-                user_group: resource.user_group&.name || ""
-            },
-            registration_form_answers: serialize_answers
+          id: resource.id,
+          code: resource.code,
+          user: {
+            name: resource.user.name,
+            email: resource.user.email,
+            user_group: resource.user_group&.name || ""
+          },
+          registration_form_answers: serialize_answers
         }.merge(options_merge(admin_extra_fields))
       end
 
@@ -40,15 +40,15 @@ module Decidim
       # Returns a Hash
       def admin_extra_fields
         {
-            extended_data: {
-                age_slice: extended_data_key(resource.user, "age_slice"),
-                group_membership: extended_data_key(resource.user, "group_membership"),
-                question_racialized: extended_data_key(resource.user, "question_racialized"),
-                question_gender: extended_data_key(resource.user, "question_gender"),
-                question_sexual_orientation: extended_data_key(resource.user, "question_sexual_orientation"),
-                question_disability: extended_data_key(resource.user, "question_disability"),
-                question_social_context: extended_data_key(resource.user, "question_social_context")
-            }
+          extended_data: {
+            age_slice: extended_data_key(resource.user, "age_slice"),
+            group_membership: extended_data_key(resource.user, "group_membership"),
+            question_racialized: extended_data_key(resource.user, "question_racialized"),
+            question_gender: extended_data_key(resource.user, "question_gender"),
+            question_sexual_orientation: extended_data_key(resource.user, "question_sexual_orientation"),
+            question_disability: extended_data_key(resource.user, "question_disability"),
+            question_social_context: extended_data_key(resource.user, "question_social_context")
+          }
         }
       end
 

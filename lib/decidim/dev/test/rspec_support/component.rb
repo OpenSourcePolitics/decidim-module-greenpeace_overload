@@ -68,16 +68,16 @@ module Decidim
       include Decidim::HasAttachments
 
       searchable_fields(
-          scope_id: { scope: :id },
-          participatory_space: { component: :participatory_space },
-          A: [:title],
-          D: [:address],
-          datetime: :published_at
+        scope_id: { scope: :id },
+        participatory_space: { component: :participatory_space },
+        A: [:title],
+        D: [:address],
+        datetime: :published_at
       )
 
       amendable(
-          fields: [:title],
-          form: "Decidim::DummyResources::DummyResourceForm"
+        fields: [:title],
+        form: "Decidim::DummyResources::DummyResourceForm"
       )
 
       component_manifest_name "dummy"
@@ -100,9 +100,9 @@ module Decidim
 
       def self.newsletter_participant_ids(component)
         Decidim::DummyResources::DummyResource.where(component: component).joins(:component)
-            .where(decidim_author_type: Decidim::UserBaseEntity.name)
-            .where.not(author: nil)
-            .pluck(:decidim_author_id).flatten.compact.uniq
+                                              .where(decidim_author_type: Decidim::UserBaseEntity.name)
+                                              .where.not(author: nil)
+                                              .pluck(:decidim_author_id).flatten.compact.uniq
       end
     end
 
@@ -149,7 +149,7 @@ class DummySerializer
 
   def serialize
     {
-        id: @id
+      id: @id
     }
   end
 end

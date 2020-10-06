@@ -33,21 +33,20 @@ describe "Registration", type: :system do
 
       it "shows additionals fields" do
         checkboxes_presence %w(registration_user_group_membership_local_group
-                             registration_user_group_membership_employee
-                             registration_user_group_membership_statutory_assembly
-                             registration_user_group_membership_volunteer_admin
-                             registration_user_group_membership_street_recruiter
-                             registration_user_group_membership_other
-                            )
+                               registration_user_group_membership_employee
+                               registration_user_group_membership_statutory_assembly
+                               registration_user_group_membership_volunteer_admin
+                               registration_user_group_membership_street_recruiter
+                               registration_user_group_membership_other)
 
         select_presence %w(
-                          registration_user_age_slice
-                          registration_user_question_racialized
-                          registration_user_question_gender
-                          registration_user_question_sexual_orientation
-                          registration_user_question_disability
-                          registration_user_question_social_context
-                        )
+          registration_user_age_slice
+          registration_user_question_racialized
+          registration_user_question_gender
+          registration_user_question_sexual_orientation
+          registration_user_question_disability
+          registration_user_question_social_context
+        )
       end
 
       context "with optional informations" do
@@ -57,18 +56,18 @@ describe "Registration", type: :system do
 
         context "with all optional informations" do
           it "is valid" do
-            select '45-55', from: :registration_user_age_slice
+            select "45-55", from: :registration_user_age_slice
             check :registration_user_group_membership_local_group
             check :registration_user_group_membership_employee
             check :registration_user_group_membership_statutory_assembly
             check :registration_user_group_membership_volunteer_admin
             check :registration_user_group_membership_street_recruiter
             check :registration_user_group_membership_other
-            select 'Yes', from: :registration_user_question_racialized
-            select 'Yes', from: :registration_user_question_gender
-            select 'Yes', from: :registration_user_question_sexual_orientation
-            select 'Yes', from: :registration_user_question_disability
-            select 'Yes', from: :registration_user_question_social_context
+            select "Yes", from: :registration_user_question_racialized
+            select "Yes", from: :registration_user_question_gender
+            select "Yes", from: :registration_user_question_sexual_orientation
+            select "Yes", from: :registration_user_question_disability
+            select "Yes", from: :registration_user_question_social_context
             check :registration_user_newsletter
             check :registration_user_tos_agreement
 
@@ -83,8 +82,8 @@ describe "Registration", type: :system do
         context "with missing optional informations" do
           it "is valid" do
             check :registration_user_group_membership_other
-            select 'Yes', from: :registration_user_question_disability
-            select 'Yes', from: :registration_user_question_social_context
+            select "Yes", from: :registration_user_question_disability
+            select "Yes", from: :registration_user_question_social_context
             check :registration_user_newsletter
             check :registration_user_tos_agreement
 
@@ -149,13 +148,13 @@ describe "Registration", type: :system do
   end
 end
 
-def checkboxes_presence(ids, checked=false)
+def checkboxes_presence(ids, checked = false)
   ids.each do |id|
     expect(page).to have_field(id, checked: checked)
   end
 end
 
-def select_presence(ids, first_option_text="Select")
+def select_presence(ids, first_option_text = "Select")
   ids.each do |id|
     expect(page).to have_field(id)
     expect(find("##{id} > option:nth-child(1)").text).to eq(first_option_text)

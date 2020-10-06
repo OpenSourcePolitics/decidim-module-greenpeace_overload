@@ -5,9 +5,9 @@ module Decidim
   class RegistrationForm < Form
     mimic :user
 
-    AGE_SLICE = %w(15-25 25-35 35-45 45-55 55-65 65-75 75-85)
-    GROUP_MEMBERSHIP = [:local_group, :employee, :statutory_assembly, :volunteer_admin, :street_recruiter, :other]
-    GENERIC_ANSWERS = [:answer_yes, :answer_no, :not_answering]
+    AGE_SLICE = %w(15-25 25-35 35-45 45-55 55-65 65-75 75-85).freeze
+    GROUP_MEMBERSHIP = [:local_group, :employee, :statutory_assembly, :volunteer_admin, :street_recruiter, :other].freeze
+    GENERIC_ANSWERS = [:answer_yes, :answer_no, :not_answering].freeze
 
     attribute :name, String
     attribute :nickname, String
@@ -33,8 +33,8 @@ module Decidim
     validates :password_confirmation, presence: true
     validates :tos_agreement, allow_nil: false, acceptance: true
 
-    validates :age_slice, inclusion: { in: AGE_SLICE }, if: ->(form){ form.age_slice.present? }
-    validate :group_membership_inclusion, if: ->(form){ form.group_membership.present? }
+    validates :age_slice, inclusion: { in: AGE_SLICE }, if: ->(form) { form.age_slice.present? }
+    validate :group_membership_inclusion, if: ->(form) { form.group_membership.present? }
     validate :questions_validation
     validate :email_unique_in_organization
     validate :nickname_unique_in_organization
@@ -56,8 +56,8 @@ module Decidim
       check_question_inclusion(:question_social_context, question_social_context) if defined? question_social_context
     end
 
-    def check_question_inclusion(question_sym, answer, inclusion_ary=GENERIC_ANSWERS)
-      return unless answer.present?
+    def check_question_inclusion(question_sym, answer, inclusion_ary = GENERIC_ANSWERS)
+      return if answer.blank?
 
       errors.add question_sym, :inclusion unless inclusion_ary.include? answer.to_sym
     end
