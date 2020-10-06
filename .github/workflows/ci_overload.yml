@@ -1,4 +1,4 @@
-name: "[CI] Overload"
+name: "[CI] Run Rspec tests"
 on:
   push:
     branches:

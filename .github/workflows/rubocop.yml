@@ -1,4 +1,4 @@
-name: Rubocop linting
+name: "[CI] Run Rubocop linting"
 
 on:
   push:

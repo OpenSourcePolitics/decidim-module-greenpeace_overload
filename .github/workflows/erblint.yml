@@ -1,4 +1,4 @@
-name: ERB linting
+name: "[CI] Run ERB linting"
 
 on:
   push:
