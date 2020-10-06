@@ -19,14 +19,14 @@ module Decidim
       describe "#serialize" do
         before do
           comment.author.update!(extended_data: {
-              age_slice: age_slice,
-              group_membership: group_membership,
-              question_racialized: question_racialized,
-              question_gender: question_gender,
-              question_sexual_orientation: question_sexual_orientation,
-              question_disability: question_disability,
-              question_social_context: question_social_context
-          })
+                                   age_slice: age_slice,
+                                   group_membership: group_membership,
+                                   question_racialized: question_racialized,
+                                   question_gender: question_gender,
+                                   question_sexual_orientation: question_sexual_orientation,
+                                   question_disability: question_disability,
+                                   question_social_context: question_social_context
+                                 })
         end
 
         it "includes the id" do
@@ -43,7 +43,7 @@ module Decidim
 
         it "includes the author" do
           expect(subject.serialize[:author]).to(
-              include(id: comment.author.id, name: comment.author.name)
+            include(id: comment.author.id, name: comment.author.name)
           )
         end
 
@@ -59,7 +59,6 @@ module Decidim
           expect(subject.serialize[:root_commentable_url]).to match(/http/)
         end
 
-
         it "does not include extended data" do
           expect(subject.serialize).not_to include(:extended_data)
         end
@@ -72,13 +71,12 @@ module Decidim
           it "serializes the extended data" do
             expect(subject.serialize).to include(:extended_data)
             expect(subject.serialize[:extended_data]).to include(age_slice: comment.author[:extended_data]["age_slice"],
-                                                   group_membership: comment.author[:extended_data]["group_membership"],
-                                                   question_racialized: comment.author[:extended_data]["question_racialized"],
-                                                   question_gender: comment.author[:extended_data]["question_gender"],
-                                                   question_sexual_orientation: comment.author[:extended_data]["question_sexual_orientation"],
-                                                   question_disability: comment.author[:extended_data]["question_disability"],
-                                                   question_social_context: comment.author[:extended_data]["question_social_context"]
-                                           )
+                                                                 group_membership: comment.author[:extended_data]["group_membership"],
+                                                                 question_racialized: comment.author[:extended_data]["question_racialized"],
+                                                                 question_gender: comment.author[:extended_data]["question_gender"],
+                                                                 question_sexual_orientation: comment.author[:extended_data]["question_sexual_orientation"],
+                                                                 question_disability: comment.author[:extended_data]["question_disability"],
+                                                                 question_social_context: comment.author[:extended_data]["question_social_context"])
           end
 
           context "when optional extended_data field is empty" do
@@ -93,8 +91,7 @@ module Decidim
                                                                    question_gender: comment.author[:extended_data]["question_gender"],
                                                                    question_sexual_orientation: "",
                                                                    question_disability: comment.author[:extended_data]["question_disability"],
-                                                                   question_social_context: comment.author[:extended_data]["question_social_context"]
-                                                           )
+                                                                   question_social_context: comment.author[:extended_data]["question_social_context"])
             end
           end
 
@@ -106,13 +103,12 @@ module Decidim
             it "serializes the author and extended data" do
               expect(subject.serialize).to include(:extended_data)
               expect(subject.serialize[:extended_data]).to include(age_slice: "",
-                                                     group_membership: "",
-                                                     question_racialized: "",
-                                                     question_gender: "",
-                                                     question_sexual_orientation: "",
-                                                     question_disability: "",
-                                                     question_social_context: ""
-                                             )
+                                                                   group_membership: "",
+                                                                   question_racialized: "",
+                                                                   question_gender: "",
+                                                                   question_sexual_orientation: "",
+                                                                   question_disability: "",
+                                                                   question_social_context: "")
             end
           end
         end
@@ -120,4 +116,3 @@ module Decidim
     end
   end
 end
-

@@ -16,11 +16,11 @@ module Decidim
 
         def serialize
           {
-              id: @resource.id,
-              serialized_name: @resource.name,
-              other_ids: @resource.ids,
-              float: @resource.float,
-              date: @resource.date
+            id: @resource.id,
+            serialized_name: @resource.name,
+            other_ids: @resource.ids,
+            float: @resource.float,
+            date: @resource.date
           }
         end
       end
@@ -28,8 +28,8 @@ module Decidim
 
     let(:collection) do
       [
-          OpenStruct.new(id: 1, name: { ca: "foocat", es: "fooes" }, ids: [1, 2, 3], float: 1.66, date: Time.zone.local(2017, 10, 1, 5, 0)),
-          OpenStruct.new(id: 2, name: { ca: "barcat", es: "bares" }, ids: [2, 3, 4], float: 0.55, date: Time.zone.local(2017, 9, 20))
+        OpenStruct.new(id: 1, name: { ca: "foocat", es: "fooes" }, ids: [1, 2, 3], float: 1.66, date: Time.zone.local(2017, 10, 1, 5, 0)),
+        OpenStruct.new(id: 2, name: { ca: "barcat", es: "bares" }, ids: [2, 3, 4], float: 0.55, date: Time.zone.local(2017, 9, 20))
       ]
     end
 

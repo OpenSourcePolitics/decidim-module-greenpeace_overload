@@ -18,15 +18,16 @@ module Decidim::Meetings
     describe "#serialize" do
       before do
         resource.user.update!(extended_data: {
-            age_slice: age_slice,
-            group_membership: group_membership,
-            question_racialized: question_racialized,
-            question_gender: question_gender,
-            question_sexual_orientation: question_sexual_orientation,
-            question_disability: question_disability,
-            question_social_context: question_social_context
-        })
+                                age_slice: age_slice,
+                                group_membership: group_membership,
+                                question_racialized: question_racialized,
+                                question_gender: question_gender,
+                                question_sexual_orientation: question_sexual_orientation,
+                                question_disability: question_disability,
+                                question_social_context: question_social_context
+                              })
       end
+
       it "includes the id" do
         expect(subject.serialize).to include(id: resource.id)
       end
@@ -37,60 +38,60 @@ module Decidim::Meetings
 
       it "includes the user" do
         expect(subject.serialize[:user]).to(
-            include(name: resource.user.name)
+          include(name: resource.user.name)
         )
         expect(subject.serialize[:user]).to(
-            include(email: resource.user.email)
+          include(email: resource.user.email)
         )
       end
 
       it "includes the meeting" do
         expect(subject.serialize[:meeting]).to(
-            include(title: resource.meeting.title)
+          include(title: resource.meeting.title)
         )
 
         expect(subject.serialize[:meeting]).to(
-            include(description: resource.meeting.description)
+          include(description: resource.meeting.description)
         )
 
         expect(subject.serialize[:meeting]).to(
-            include(start_time: resource.meeting.start_time)
+          include(start_time: resource.meeting.start_time)
         )
 
         expect(subject.serialize[:meeting]).to(
-            include(end_time: resource.meeting.end_time)
+          include(end_time: resource.meeting.end_time)
         )
 
         expect(subject.serialize[:meeting]).to(
-            include(address: resource.meeting.address)
+          include(address: resource.meeting.address)
         )
 
         expect(subject.serialize[:meeting]).to(
-            include(location: resource.meeting.location)
+          include(location: resource.meeting.location)
         )
 
         expect(subject.serialize[:meeting]).to(
-            include(location_hints: resource.meeting.location_hints)
+          include(location_hints: resource.meeting.location_hints)
         )
 
         expect(subject.serialize[:meeting]).to(
-            include(reference: resource.meeting.reference)
+          include(reference: resource.meeting.reference)
         )
 
         expect(subject.serialize[:meeting]).to(
-            include(attendees_count: resource.meeting.attendees_count)
+          include(attendees_count: resource.meeting.attendees_count)
         )
 
         expect(subject.serialize[:meeting]).to(
-            include(attending_organizations: resource.meeting.attending_organizations)
+          include(attending_organizations: resource.meeting.attending_organizations)
         )
 
         expect(subject.serialize[:meeting]).to(
-            include(closed_at: resource.meeting.closed_at)
+          include(closed_at: resource.meeting.closed_at)
         )
 
         expect(subject.serialize[:meeting]).to(
-            include(closing_report: resource.meeting.closing_report)
+          include(closing_report: resource.meeting.closing_report)
         )
       end
 
@@ -107,8 +108,7 @@ module Decidim::Meetings
                                                                question_gender: resource.user[:extended_data]["question_gender"],
                                                                question_sexual_orientation: resource.user[:extended_data]["question_sexual_orientation"],
                                                                question_disability: resource.user[:extended_data]["question_disability"],
-                                                               question_social_context: resource.user[:extended_data]["question_social_context"]
-                                                       )
+                                                               question_social_context: resource.user[:extended_data]["question_social_context"])
         end
 
         context "when optional extended_data field is empty" do
@@ -123,8 +123,7 @@ module Decidim::Meetings
                                                                  question_gender: resource.user[:extended_data]["question_gender"],
                                                                  question_sexual_orientation: "",
                                                                  question_disability: resource.user[:extended_data]["question_disability"],
-                                                                 question_social_context: resource.user[:extended_data]["question_social_context"]
-                                                         )
+                                                                 question_social_context: resource.user[:extended_data]["question_social_context"])
           end
         end
 
@@ -141,8 +140,7 @@ module Decidim::Meetings
                                                                  question_gender: "",
                                                                  question_sexual_orientation: "",
                                                                  question_disability: "",
-                                                                 question_social_context: ""
-                                                         )
+                                                                 question_social_context: "")
           end
         end
       end

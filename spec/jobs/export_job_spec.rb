@@ -27,12 +27,12 @@ module Decidim
           export_data = double
 
           expect(Decidim::Exporters::CSV)
-              .to(receive(:new).with(anything, DummySerializer, user.admin?))
-              .and_return(double(export: export_data))
+            .to(receive(:new).with(anything, DummySerializer, user.admin?))
+            .and_return(double(export: export_data))
 
           expect(ExportMailer)
-              .to(receive(:export).with(user, anything, export_data))
-              .and_return(double(deliver_now: true))
+            .to(receive(:export).with(user, anything, export_data))
+            .and_return(double(deliver_now: true))
 
           ExportJob.perform_now(user, component, "dummies", "CSV")
         end
@@ -43,12 +43,12 @@ module Decidim
           export_data = double
 
           expect(Decidim::Exporters::JSON)
-              .to(receive(:new).with(anything, DummySerializer, user.admin?))
-              .and_return(double(export: export_data))
+            .to(receive(:new).with(anything, DummySerializer, user.admin?))
+            .and_return(double(export: export_data))
 
           expect(ExportMailer)
-              .to(receive(:export).with(user, anything, export_data))
-              .and_return(double(deliver_now: true))
+            .to(receive(:export).with(user, anything, export_data))
+            .and_return(double(deliver_now: true))
 
           ExportJob.perform_now(user, component, "dummies", "JSON")
         end
