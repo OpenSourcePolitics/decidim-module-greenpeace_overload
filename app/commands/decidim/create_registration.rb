@@ -54,7 +54,7 @@ module Decidim
     def extended_data
       {
         age_slice: form.try(:age_slice) || "",
-        group_membership: form.try(:group_membership) || "",
+        group_membership: form.try(:group_membership).select(&:present?),
         question_racialized: form.try(:question_racialized) || "",
         question_gender: form.try(:question_gender) || "",
         question_sexual_orientation: form.try(:question_sexual_orientation) || "",

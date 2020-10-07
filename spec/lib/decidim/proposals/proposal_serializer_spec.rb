@@ -165,13 +165,13 @@ module Decidim
           it "serializes the author and extended data" do
             expect(serialized).to include(:author)
             expect(serialized[:author]).to include(id: proposal&.creator_author&.id)
-            expect(serialized[:author]).to include(age_slice: proposal&.creator_author[:extended_data]["age_slice"],
-                                                   group_membership: proposal&.creator_author[:extended_data]["group_membership"],
-                                                   question_racialized: proposal&.creator_author[:extended_data]["question_racialized"],
-                                                   question_gender: proposal&.creator_author[:extended_data]["question_gender"],
-                                                   question_sexual_orientation: proposal&.creator_author[:extended_data]["question_sexual_orientation"],
-                                                   question_disability: proposal&.creator_author[:extended_data]["question_disability"],
-                                                   question_social_context: proposal&.creator_author[:extended_data]["question_social_context"])
+            expect(serialized[:author]).to include(age_slice: proposal&.creator_author&.extended_data&.dig("age_slice"),
+                                                   group_membership: proposal&.creator_author&.extended_data&.dig("group_membership"),
+                                                   question_racialized: proposal&.creator_author&.extended_data&.dig("question_racialized"),
+                                                   question_gender: proposal&.creator_author&.extended_data&.dig("question_gender"),
+                                                   question_sexual_orientation: proposal&.creator_author&.extended_data&.dig("question_sexual_orientation"),
+                                                   question_disability: proposal&.creator_author&.extended_data&.dig("question_disability"),
+                                                   question_social_context: proposal&.creator_author&.extended_data&.dig("question_social_context"))
           end
 
           context "when user does not have extended_data" do
