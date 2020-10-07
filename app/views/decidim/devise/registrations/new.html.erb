@@ -87,14 +87,10 @@
               </div>
             </div>
           </div>
-          <div class="">
-            <p>
-              <%= t("aim", scope: "decidim.devise.registrations.new.extra_notes") %>
-            </p>
-          </div>
 
           <div class="card" id="additional_information_next">
             <div class="card__content">
+              <div><%== t("aim", scope: "decidim.devise.registrations.new.extra_notes") %></div>
               <div class="user-question-1">
                 <div class="field">
                   <%= f.collection_select(
@@ -166,8 +162,9 @@
                       ) %>
                 </div>
               </div>
-
-              <span class="help-text"><%== t("race_definition", scope: "decidim.devise.registrations.new.help_text") %></span>
+              <div>
+                <p><span class="help-text"><%== t("race_definition", scope: "decidim.devise.registrations.new.help_text") %></span></p>
+              </div>
             </div>
           </div>
 

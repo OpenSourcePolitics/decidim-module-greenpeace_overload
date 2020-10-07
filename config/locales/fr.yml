@@ -5,15 +5,38 @@ fr:
       registrations:
         new:
           extra_notes:
-            aim: Les membres des différentes communautés de Greenpeace France sont majoritairement des personnes blanches, issues des classes moyenne ou aisée et avec des niveaux d’étude élevés. Afin de pouvoir rendre compte de la plus grande diversité de points de vue possible, nous tenons à réserver une place spécifique à l’avis des personnes discriminées (du fait de leur race*, de leur genre, de leur classe, etc.) au sein de la société. Il ne s’agit pas d’identifier des
-              personnes en tant qu’individus, mais simplement de donner plus de poids à un ensemble d’avis, qui sinon seraient invisibilisés par la majorité du fait de la moindre représentativité numéraire. En effet, être vu·e, être entendu·e, avoir son opinion prise en compte sont autant de privilèges, dont sont très souvent privées les personnes minorisées, qui rencontrent de nombreuses difficultés à faire entendre leurs voix et reconnaître leurs expériences. Il est aujourd’hui crucial de pallier cette inégalité structurelle, en accordant une visibilité particulière à ces personnes dans les démarches de consultation internes à Greenpeace France.
-
-              Bien entendu, aucune réponse n’est obligatoire et toutes les réponses seront traitées
-              anonymement.
+            aim: |-
+              <p>
+                Les membres des différentes communautés de Greenpeace France sont majoritairement des personnes blanches,
+                issues des classes moyenne ou aisée et avec des niveaux d’étude élevés.
+              </p>
+              <p>
+                Afin de pouvoir rendre compte de la plus grande diversité de points de vue possible,
+                nous tenons à réserver une place spécifique à l’avis des personnes discriminées
+                (du fait de leur race*, de leur genre, de leur classe, etc.) au sein de la société.
+                Il ne s’agit pas d’identifier des personnes en tant qu’individus,
+                mais simplement de donner plus de poids à un ensemble d’avis,
+                qui sinon seraient invisibilisés par la majorité du fait de la moindre représentativité numéraire.
+              </p>
+              <p>
+                En effet, être vu·e, être entendu·e, avoir son opinion prise en compte sont autant de privilèges,
+                dont sont très souvent privées les personnes minorisées, qui rencontrent de nombreuses difficultés
+                à faire entendre leurs voix et reconnaître leurs expériences.
+                Il est aujourd’hui crucial de pallier cette inégalité structurelle,
+                en accordant une visibilité particulière à ces personnes dans les démarches
+                de consultation internes à Greenpeace France.
+              </p>
+              <p>
+                Bien entendu, aucune réponse n’est obligatoire et toutes les réponses seront traitées
+                anonymement.
+                <br/><br/>
+              </p>
           help_text:
             age_slice_help: Quel âge as-tu ?
             question_racialized: (Les personnes dites racisées sont celles qui subissent les conséquences négatives des processus de racialisation de la société et du racisme systémique, du fait de certaines de leurs caractéristiques physiques ou de leur patronyme)
-            race_definition: "*<b>Race</b> : Ce concept postule l’existence de différences fondamentales entre les êtres humains du fait de leur couleur de peau et de leurs caractéristiques physiques. L’existence scientifique des races humaines a été invalidée depuis longtemps. Néanmoins, ce concept et toutes les représentations qu’il implique sur les personnes blanches et les personnes racisées continuent de nourrir des mécanismes discriminatoires et ainsi d'impacter très concrètement l’organisation des sociétés et les trajectoires de vie des personnes."
+            race_definition: |-
+              <br/>
+              *<b>Race</b> : Ce concept postule l’existence de différences fondamentales entre les êtres humains du fait de leur couleur de peau et de leurs caractéristiques physiques. L’existence scientifique des races humaines a été invalidée depuis longtemps. Néanmoins, ce concept et toutes les représentations qu’il implique sur les personnes blanches et les personnes racisées continuent de nourrir des mécanismes discriminatoires et ainsi d'impacter très concrètement l’organisation des sociétés et les trajectoires de vie des personnes.
           labels:
             age_slice: Quel âge as-tu ?
             group_membership: A quel(s) groupe(s) appartiens-tu ?
