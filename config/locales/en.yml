@@ -1,6 +1,35 @@
 ---
 en:
   decidim:
+    devise:
+      registrations:
+        new:
+          extra_notes:
+            aim: The members of Greenpeace France's various communities are mostly white, from middle or upper middle class backgrounds and with high levels of education. In order to be able to reflect the greatest possible diversity of points of view, we make a point of reserving a specific place for the opinions of people who are discriminated against (because of their race*, gender, class, etc.) within society. It is not a question of identifying people as individuals, but simply of giving more weight to a set of opinions, which would otherwise be invisible to the majority due to the lower numerical representativeness. Indeed, being seen, being heard and having one's opinion taken into account are all privileges, which are very often denied to minority groups, who encounter many difficulties in making their voices heard and recognizing their experiences. It is now crucial to overcome this structural inequality by giving these people special visibility in Greenpeace France's internal consultation processes. Of course, no response is mandatory and all responses will be treated anonymously.
+          help_text:
+            age_slice_help: How old are you ?
+            question_racialized: (Racialized people are those who are negatively affected by the processes of social racialization and systemic racism because of certain physical characteristics or their surname)
+            race_definition: "*<b>Race</b> : This concept postulates the existence of fundamental differences between human beings because of their skin color and physical characteristics. The scientific existence of human races has long since been invalidated. Nevertheless, this concept and all the representations it implies about white people and racialized people continue to feed discriminatory mechanisms and thus to have a very concrete impact on the organization of societies and the life trajectories of individuals."
+          labels:
+            age_slice: How old are you ?
+            group_membership: Which group(s) do you belong to ?
+            question_disability: Do you have a disability, visible or invisible ?
+            question_gender: Do you consider yourself a minority because of your gender ?
+            question_racialized: Do you consider yourself racialized ?
+            question_sexual_orientation: Do you consider yourself to be in a minority with regard to your sexual orientation ?
+            question_social_context: Are you from a working-class background?
+            select: Select
+          generic_answers:
+            answer_yes: "Yes"
+            answer_no: "No"
+            not_answering: Does not wish to answer
+          group_membership:
+            employee: Employees
+            local_group: Local group
+            other: Other
+            statutory_assembly: Statutory Assembly / Board
+            street_recruiter: Street Recruiter / DD
+            volunteer_admin: Volunteers admin
     components:
       greenpeace_overload:
         name: GreenpeaceOverload
